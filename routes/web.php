@@ -13,12 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    $records = [
-        ['name' => 'Dirt', 'year' => '1990', 'genre' => 'grunge'],
-        ['name' => 'Ten', 'year' => '1993', 'genre' => 'grunge'],
-        ['name' => 'Broken machine', 'year' => '2016', 'genre' => 'rock'],
-    ];
+// Route::get('/', function () {
+//     return view('index');
+// });
 
-    return view('index', ["records" => $records]);
-});
+Route::view('/{path?}', 'index');
