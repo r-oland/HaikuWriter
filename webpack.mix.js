@@ -11,6 +11,7 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.react("resources/js/app.js", "public/js").browserSync(
-    "http://laravel.test/"
-);
+mix.react("resources/js/app.js", "public/js").browserSync({
+    proxy: "http://laravel.test/",
+    notify: false
+});

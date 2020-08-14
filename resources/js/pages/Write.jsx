@@ -5,6 +5,6 @@ import styled from "styled-components";
 
 const Wrapper = styled.div``;
 
-export default function Index() {
+export default function Write() {
     return <Wrapper></Wrapper>;
 }
