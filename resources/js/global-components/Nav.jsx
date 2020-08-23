@@ -6,6 +6,13 @@ import { Container } from "../styles/Mixins";
 // =========================
 
 const Wrapper = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+`;
+
+const Items = styled.div`
     height: 45px;
     display: flex;
     justify-content: space-between;
@@ -34,25 +41,29 @@ export default function Nav() {
     const admin = false;
 
     return (
-        <Container>
-            <Wrapper>
-                <button onClick={() => router.push("/")}>
-                    <img src="img/logo.svg" alt="logo" />
-                </button>
-                <ul>
-                    <li>
-                        <a onClick={() => router.push("/overview")}>Haiku's</a>
-                    </li>
-                    <li>
-                        <a onClick={() => router.push("/write")}>Write</a>
-                    </li>
-                    {admin && (
+        <Wrapper>
+            <Container>
+                <Items>
+                    <button onClick={() => router.push("/")}>
+                        <img src="img/logo.svg" alt="logo" />
+                    </button>
+                    <ul>
                         <li>
-                            <a onClick={() => router.push("/")}>Add</a>
+                            <a onClick={() => router.push("/overview")}>
+                                Haiku's
+                            </a>
                         </li>
-                    )}
-                </ul>
-            </Wrapper>
-        </Container>
+                        <li>
+                            <a onClick={() => router.push("/write")}>Write</a>
+                        </li>
+                        {admin && (
+                            <li>
+                                <a onClick={() => router.push("/")}>Add</a>
+                            </li>
+                        )}
+                    </ul>
+                </Items>
+            </Container>
+        </Wrapper>
     );
 }

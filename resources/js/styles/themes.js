@@ -16,7 +16,7 @@ export const theme = {
         "rgba(54, 54, 54, 1)",
         "rgba(33, 33, 33, 1)"
     ],
-    primary: "rgba(255, 174, 32, 1)",
+    primary: "#cc2522",
     shadow: {
         xs: "0 1px 3px rgba(0, 0, 0, 0.1)",
         s: "0 1px 3px rgba(0, 0, 0, 0.2)",
