@@ -14,7 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('haiku', 'API\HaikuController@index');
+// HAIKU
+Route::get('allHaikus', 'API\HaikuController@index');
+Route::post('newHaiku', 'API\HaikuController@store');
+Route::post('deleteHaiku', 'API\HaikuController@destroy');
+
+// LINE
+Route::get('allLines', 'API\LineController@index');
+Route::post('newLine', 'API\LineController@store');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

@@ -16,7 +16,7 @@ const Line = styled.p`
 
 export default function Completion() {
     const {
-        haiku: { title, line1, line2, line3 }
+        newHaiku: { title, line1, line2, line3 }
     } = useContext(HaikuContext);
 
     return (

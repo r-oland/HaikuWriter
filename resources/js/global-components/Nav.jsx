@@ -38,7 +38,6 @@ const Items = styled.div`
 
 export default function Nav() {
     const router = useHistory();
-    const admin = false;
 
     return (
         <Wrapper>
@@ -56,11 +55,9 @@ export default function Nav() {
                         <li>
                             <a onClick={() => router.push("/write")}>Write</a>
                         </li>
-                        {admin && (
-                            <li>
-                                <a onClick={() => router.push("/")}>Add</a>
-                            </li>
-                        )}
+                        <li>
+                            <a onClick={() => router.push("/add")}>Add</a>
+                        </li>
                     </ul>
                 </Items>
             </Container>

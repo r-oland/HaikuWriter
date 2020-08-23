@@ -1,7 +1,9 @@
 // Components==============
+import Axios from "axios";
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { HaikuContext } from "../pages/Write";
+import { StoreContext } from "../utils/Context";
 // =========================
 
 const Form = styled.form`
@@ -32,19 +34,24 @@ const Button = styled.button`
 
 export default function Title() {
     const [title, setTitle] = useState("");
-    const { step, setStep, setHaiku } = useContext(HaikuContext);
+    const { step, setStep, setNewHaiku, newHaiku } = useContext(HaikuContext);
+    const { setHaikus } = useContext(StoreContext);
 
     function handleSubmit(e) {
         e.preventDefault();
 
         if (step === 4 && title) {
-            setHaiku(prev => ({ ...prev, title }));
+            setNewHaiku(prev => ({ ...prev, title }));
             setStep(5);
+
+            setHaikus(prev => [...prev, { ...newHaiku, title }]);
+
+            Axios.post("/api/newHaiku", { ...newHaiku, title });
         }
     }
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} method="post">
             <h2>Name your poem</h2>
             <TitleField
                 name="title"

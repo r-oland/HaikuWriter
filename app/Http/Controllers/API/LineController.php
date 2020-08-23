@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Haiku;
 use App\Http\Controllers\Controller;
+use App\Line;
 use Illuminate\Http\Request;
 
-class HaikuController extends Controller {
+class LineController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return Haiku::all();
+        return Line::all();
     }
 
     /**
@@ -23,13 +23,12 @@ class HaikuController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $haiku = new Haiku();
-        $haiku->title = $request->title;
-        $haiku->line1 = $request->line1;
-        $haiku->line2 = $request->line2;
-        $haiku->line3 = $request->line3;
+        $lines = new Line();
+        $lines->line1 = $request->line1;
+        $lines->line2 = $request->line2;
+        $lines->line3 = $request->line3;
 
-        $haiku->save();
+        $lines->save();
     }
 
     /**
@@ -39,7 +38,7 @@ class HaikuController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        return Haiku::where('id', $id);
+        //
     }
 
     /**
@@ -55,11 +54,11 @@ class HaikuController extends Controller {
 
     /**
      * Remove the specified resource from storage.
-     * @param  \Illuminate\Http\Request  $request
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request) {
-        Haiku::destroy($request->id);
+    public function destroy($id) {
+        //
     }
 }

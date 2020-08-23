@@ -1,10 +1,10 @@
 // Components==============
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import data from "../data.json";
 import Completion from "../macro-write/Completion";
 import Line from "../macro-write/Line";
 import Title from "../macro-write/Title";
+import { StoreContext } from "../utils/Context";
 // =========================
 
 const Wrapper = styled.div`
@@ -19,10 +19,12 @@ const Wrapper = styled.div`
 export const HaikuContext = React.createContext();
 
 export default function WritePage() {
-    const { line1, line2, line3 } = data;
+    const {
+        lines: { line1, line2, line3 }
+    } = useContext(StoreContext);
 
     const [step, setStep] = useState(1);
-    const [haiku, setHaiku] = useState({
+    const [newHaiku, setNewHaiku] = useState({
         title: "",
         line1: "",
         line2: "",
@@ -31,7 +33,9 @@ export default function WritePage() {
 
     return (
         <Wrapper>
-            <HaikuContext.Provider value={{ step, setStep, setHaiku, haiku }}>
+            <HaikuContext.Provider
+                value={{ step, setStep, setNewHaiku, newHaiku }}
+            >
                 {step === 1 ? (
                     <Line lines={line1} />
                 ) : step === 2 ? (

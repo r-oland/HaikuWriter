@@ -14,7 +14,7 @@ const Text = styled.p`
 `;
 
 export default function Line({ lines }) {
-    const { step, setStep, setHaiku } = useContext(HaikuContext);
+    const { step, setStep, setNewHaiku } = useContext(HaikuContext);
 
     function handleClick(e) {
         e.persist();
@@ -22,11 +22,11 @@ export default function Line({ lines }) {
         if (step > 4) return;
 
         if (step === 1)
-            setHaiku(prev => ({ ...prev, line1: e.target.innerHTML }));
+            setNewHaiku(prev => ({ ...prev, line1: e.target.innerHTML }));
         if (step === 2)
-            setHaiku(prev => ({ ...prev, line2: e.target.innerHTML }));
+            setNewHaiku(prev => ({ ...prev, line2: e.target.innerHTML }));
         if (step === 3)
-            setHaiku(prev => ({ ...prev, line3: e.target.innerHTML }));
+            setNewHaiku(prev => ({ ...prev, line3: e.target.innerHTML }));
 
         setStep(prev => prev + 1);
     }
