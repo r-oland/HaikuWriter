@@ -1,10 +1,10 @@
 // Components==============
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Completion from "../macro-write/Completion";
 import Line from "../macro-write/Line";
 import Title from "../macro-write/Title";
-import { StoreContext } from "../utils/Context";
 // =========================
 
 const Wrapper = styled.div`
@@ -21,7 +21,7 @@ export const HaikuContext = React.createContext();
 export default function WritePage() {
     const {
         lines: { line1, line2, line3 }
-    } = useContext(StoreContext);
+    } = useSelector(({ lines }) => ({ lines }));
 
     const [step, setStep] = useState(1);
     const [newHaiku, setNewHaiku] = useState({

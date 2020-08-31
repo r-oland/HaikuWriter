@@ -1,9 +1,9 @@
 // Components==============
-import React, { useContext } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Haiku from "../macro-overview/Haiku";
 import { Container } from "../styles/Mixins";
-import { StoreContext } from "../utils/Context";
 // =========================
 
 const Wrapper = styled.div`
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 `;
 
 export default function Overview() {
-    const { haikus } = useContext(StoreContext);
+    const { haikus } = useSelector(({ haikus }) => ({ haikus }));
 
     return (
         <Container>

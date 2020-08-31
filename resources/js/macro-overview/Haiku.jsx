@@ -1,8 +1,8 @@
 // Components==============
-import Axios from "axios";
-import React, { useContext } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { StoreContext } from "../utils/Context";
+import { removeHaiku } from "../utils/actions";
 // =========================
 
 const Wrapper = styled.div`
@@ -32,22 +32,19 @@ const Line = styled.p`
 `;
 
 export default function Haiku({ e }) {
-    const { haikus, setHaikus } = useContext(StoreContext);
+    const dispatch = useDispatch();
 
-    function removeHaiku() {
+    function remove() {
         const id = e.id;
 
-        const newHaikuList = haikus.filter(haiku => haiku.id !== e.id);
-        setHaikus(newHaikuList);
-
-        Axios.post("/api/deleteHaiku", { id });
+        dispatch(removeHaiku({ id }));
     }
 
     return (
         <Wrapper>
             <Flex>
                 <Title>{e.title}</Title>
-                <button onClick={removeHaiku}>x</button>
+                <button onClick={remove}>x</button>
             </Flex>
             <Line> {e.line1}</Line>
             <Line> {e.line2}</Line>

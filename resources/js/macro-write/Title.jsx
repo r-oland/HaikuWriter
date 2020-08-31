@@ -1,9 +1,9 @@
 // Components==============
-import Axios from "axios";
 import React, { useContext, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { HaikuContext } from "../pages/Write";
-import { StoreContext } from "../utils/Context";
+import { addHaiku } from "../utils/actions";
 // =========================
 
 const Form = styled.form`
@@ -35,7 +35,7 @@ const Button = styled.button`
 export default function Title() {
     const [title, setTitle] = useState("");
     const { step, setStep, setNewHaiku, newHaiku } = useContext(HaikuContext);
-    const { setHaikus } = useContext(StoreContext);
+    const dispatch = useDispatch();
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -43,10 +43,7 @@ export default function Title() {
         if (step === 4 && title) {
             setNewHaiku(prev => ({ ...prev, title }));
             setStep(5);
-
-            setHaikus(prev => [...prev, { ...newHaiku, title }]);
-
-            Axios.post("/api/newHaiku", { ...newHaiku, title });
+            dispatch(addHaiku({ newHaiku, title }));
         }
     }
 

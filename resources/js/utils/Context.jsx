@@ -1,22 +1,19 @@
 // Components==============
 import React from "react";
+import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "../styles/GlobalStyles";
 import { theme } from "../styles/themes";
-import { useStore } from "./useStore";
+import { store } from "./store";
 // =========================
 
-export const StoreContext = React.createContext();
-
 export default function Context({ children }) {
-    const contextValue = useStore();
-
     return (
-        <ThemeProvider theme={theme}>
-            <StoreContext.Provider value={contextValue}>
+        <Provider store={store}>
+            <ThemeProvider theme={theme}>
                 {children}
-            </StoreContext.Provider>
-            <GlobalStyles />
-        </ThemeProvider>
+                <GlobalStyles />
+            </ThemeProvider>
+        </Provider>
     );
 }

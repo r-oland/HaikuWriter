@@ -1,9 +1,9 @@
 // Components==============
-import Axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Container } from "../styles/Mixins";
-import { StoreContext } from "../utils/Context";
+import { addLines } from "../utils/actions";
 // =========================
 
 const Wrapper = styled.div`
@@ -42,25 +42,13 @@ const Wrapper = styled.div`
 
 export default function Add() {
     const [newLines, setNewLines] = useState({});
-    const { lines, setLines } = useContext(StoreContext);
-
-    function addLine(newLine, line, nr) {
-        if (newLine) {
-            let newArr = line;
-
-            newArr.push(newLine);
-            setLines(prev => ({ ...prev, [nr]: newArr }));
-        }
-    }
+    const dispatch = useDispatch();
 
     const handleSubmit = e => {
         e.preventDefault();
 
-        addLine(newLines.line1, lines.line1, "line1");
-        addLine(newLines.line2, lines.line2, "line2");
-        addLine(newLines.line3, lines.line3, "line3");
-
-        Axios.post("/api/newLine", newLines).then(() => setNewLines({}));
+        dispatch(addLines({ newLines }));
+        setNewLines({});
     };
 
     const handleChange = e => {
