@@ -1,9 +1,10 @@
 // Components==============
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Haiku from "../macro-overview/Haiku";
 import { Container } from "../styles/Mixins";
+import { getAsyncInitial } from "../utils/reducers";
 // =========================
 
 const Wrapper = styled.div`
@@ -23,6 +24,11 @@ const Wrapper = styled.div`
 
 export default function Overview() {
     const { haikus } = useSelector(({ haikus }) => ({ haikus }));
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getAsyncInitial());
+    }, []);
 
     return (
         <Container>

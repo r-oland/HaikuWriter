@@ -41437,6 +41437,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _macro_overview_Haiku__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../macro-overview/Haiku */ "./resources/js/macro-overview/Haiku.jsx");
 /* harmony import */ var _styles_Mixins__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../styles/Mixins */ "./resources/js/styles/Mixins.js");
+/* harmony import */ var _utils_reducers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/reducers */ "./resources/js/utils/reducers.js");
 function _templateObject() {
   var data = _taggedTemplateLiteral(["\n    padding-top: ", ";\n    display: grid;\n    grid-template-columns: 1fr;\n    grid-gap: 5vw;\n\n    @media (min-width: 768px) {\n        grid-template-columns: 1fr 1fr;\n    }\n\n    @media (min-width: 1000px) {\n        grid-template-columns: 1fr 1fr 1fr;\n    }\n"]);
 
@@ -41450,6 +41451,7 @@ function _templateObject() {
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 // Components==============
+
 
 
 
@@ -41469,6 +41471,10 @@ function Overview() {
   }),
       haikus = _useSelector.haikus;
 
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    dispatch(Object(_utils_reducers__WEBPACK_IMPORTED_MODULE_5__["getAsyncInitial"])());
+  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_Mixins__WEBPACK_IMPORTED_MODULE_4__["Container"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Wrapper, null, haikus !== [] && haikus.map(function (e, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_macro_overview_Haiku__WEBPACK_IMPORTED_MODULE_3__["default"], {
       key: index,
